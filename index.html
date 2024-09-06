@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Battle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://www.proshop.no/Images/Pokemon-Banner-nye-852X350.png'); /* 寶可夢背景圖片 */
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            margin-bottom: 30px;
+        }
+
+        .pokemon-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 每行3隻寶可夢 */
+            gap: 20px;
+            width: 80%;
+            max-width: 1000px;
+        }
+
+        .pokemon {
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 2px solid #ccc;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .pokemon img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+        }
+
+        .pokemon h2 {
+            font-size: 18px;
+            color: #333;
+        }
+
+        .stats {
+            margin: 10px 0;
+        }
+
+        .stats span {
+            display: block;
+            font-weight: bold;
+        }
+
+        .buttons {
+            margin-top: 10px;
+        }
+
+        .buttons button {
+            padding: 5px 10px;
+            margin: 5px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #3498db;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+
+        .buttons button:hover {
+            background-color: #2980b9;
+        }
+
+        .upload-container {
+            margin-bottom: 10px;
+        }
+
+        .upload-container input {
+            margin-top: 10px;
+        }
+
+        .name-input {
+            margin-bottom: 10px;
+            font-size: 16px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 80%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Pokemon Battle</h1>
+
+        <div class="pokemon-container">
+            <!-- Pokemon 1 -->
+            <div class="pokemon" id="pokemon1">
+                <input class="name-input" type="text" placeholder="Enter Pokemon Name" oninput="updateName(1, this.value)">
+                <div class="upload-container">
+                    <input type="file" accept="image/*" onchange="loadImage(1, event)">
+                </div>
+                <img id="img1" src="default-pokemon.png" alt="Pokemon 1">
+                <div class="stats">
+                    <span>HP: <span id="hp1">100</span></span>
+                    <span>Attack: <span id="attack1">50</span></span>
+                </div>
+                <div class="buttons">
+                    <button onclick="increaseHP(1)">Increase HP</button>
+                    <button onclick="decreaseHP(1)">Decrease HP</button>
+                    <button onclick="increaseAttack(1)">Increase Attack</button>
+                    <button onclick="decreaseAttack(1)">Decrease Attack</button>
+                </div>
+            </div>
+
+            <!-- Pokemon 2 -->
+            <div class="pokemon" id="pokemon2">
+                <input class="name-input" type="text" placeholder="Enter Pokemon Name" oninput="updateName(2, this.value)">
+                <div class="upload-container">
+                    <input type="file" accept="image/*" onchange="loadImage(2, event)">
+                </div>
+                <img id="img2" src="default-pokemon.png" alt="Pokemon 2">
+                <div class="stats">
+                    <span>HP: <span id="hp2">100</span></span>
+                    <span>Attack: <span id="attack2">50</span></span>
+                </div>
+                <div class="buttons">
+                    <button onclick="increaseHP(2)">Increase HP</button>
+                    <button onclick="decreaseHP(2)">Decrease HP</button>
+                    <button onclick="increaseAttack(2)">Increase Attack</button>
+                    <button onclick="decreaseAttack(2)">Decrease Attack</button>
+                </div>
+            </div>
+
+            <!-- Pokemon 3 -->
+            <div class="pokemon" id="pokemon3">
+                <input class="name-input" type="text" placeholder="Enter Pokemon Name" oninput="updateName(3, this.value)">
+                <div class="upload-container">
+                    <input type="file" accept="image/*" onchange="loadImage(3, event)">
+                </div>
+                <img id="img3" src="default-pokemon.png" alt="Pokemon 3">
+                <div class="stats">
+                    <span>HP: <span id="hp3">100</span></span>
+                    <span>Attack: <span id="attack3">50</span></span>
+                </div>
+                <div class="buttons">
+                    <button onclick="increaseHP(3)">Increase HP</button>
+                    <button onclick="decreaseHP(3)">Decrease HP</button>
+                    <button onclick="increaseAttack(3)">Increase Attack</button>
+                    <button onclick="decreaseAttack(3)">Decrease Attack</button>
+                </div>
+            </div>
+
+            <!-- Pokemon 4 -->
+            <div class="pokemon" id="pokemon4">
+                <input class="name-input" type="text" placeholder="Enter Pokemon Name" oninput="updateName(4, this.value)">
+                <div class="upload-container">
+                    <input type="file" accept="image/*" onchange="loadImage(4, event)">
+                </div>
+                <img id="img4" src="default-pokemon.png" alt="Pokemon 4">
+                <div class="stats">
+                    <span>HP: <span id="hp4">100</span></span>
+                    <span>Attack: <span id="attack4">50</span></span>
+                </div>
+                <div class="buttons">
+                    <button onclick="increaseHP(4)">Increase HP</button>
+                    <button onclick="decreaseHP(4)">Decrease HP</button>
+                    <button onclick="increaseAttack(4)">Increase Attack</button>
+                    <button onclick="decreaseAttack(4)">Decrease Attack</button>
+                </div>
+            </div>
+
+            <!-- Pokemon 5 -->
+            <div class="pokemon" id="pokemon5">
+                <input class="name-input" type="text" placeholder="Enter Pokemon Name" oninput="updateName(5, this.value)">
+                <div class="upload-container">
+                    <input type="file" accept="image/*" onchange="loadImage(5, event)">
+                </div>
+                <img id="img5" src="default-pokemon.png" alt="Pokemon 5">
+                <div class="stats">
+                    <span>HP: <span id="hp5">100</span></span>
+                    <span>Attack: <span id="attack5">50</span></span>
+                </div>
+                <div class="buttons">
+                    <button onclick="increaseHP(5)">Increase HP</button>
+                    <button onclick="decreaseHP(5)">Decrease HP</button>
+                    <button onclick="increaseAttack(5)">Increase Attack</button>
+                    <button onclick="decreaseAttack(5)">Decrease Attack</button>
+                </div>
+            </div>
+
+            <!-- Pokemon 6 -->
+            <div class="pokemon" id="pokemon6">
+                <input class="name-input" type="text" placeholder="Enter Pokemon Name" oninput="updateName(6, this.value)">
+                <div class="upload-container">
+                    <input type="file" accept="image/*" onchange="loadImage(6, event)">
+                </div>
+                <img id="img6" src="default-pokemon.png" alt="Pokemon 6">
+                <div class="stats">
+                    <span>HP: <span id="hp6">100</span></span>
+                    <span>Attack: <span id="attack6">50</span></span>
+                </div>
+                <div class="buttons">
+                    <button onclick="increaseHP(6)">Increase HP</button>
+                    <button onclick="decreaseHP(6)">Decrease HP</button>
+                    <button onclick="increaseAttack(6)">Increase Attack</button>
+                    <button onclick="decreaseAttack(6)">Decrease Attack</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function updateName(id, value) {
+            const pokemonElement = document.getElementById('pokemon' + id).getElementsByTagName('h2')[0];
+            pokemonElement.textContent = value ? value : 'Pokemon ' + id;
+        }
+
+        function loadImage(id, event) {
+            const imageElement = document.getElementById('img' + id);
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imageElement.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function increaseHP(id) {
+            let hpElement = document.getElementById('hp' + id);
+            let currentHP = parseInt(hpElement.textContent);
+            hpElement.textContent = currentHP + 10;
+        }
+
+        function decreaseHP(id) {
+            let hpElement = document.getElementById('hp' + id);
+            let currentHP = parseInt(hpElement.textContent);
+            if (currentHP > 0) {
+                hpElement.textContent = currentHP - 10;
+            }
+        }
+
+        function increaseAttack(id) {
+            let attackElement = document.getElementById('attack' + id);
+            let currentAttack = parseInt(attackElement.textContent);
+            attackElement.textContent = currentAttack + 5;
+        }
+
+        function decreaseAttack(id) {
+            let attackElement = document.getElementById('attack' + id);
+            let currentAttack = parseInt(attackElement.textContent);
+            if (currentAttack > 0) {
+                attackElement.textContent = currentAttack - 5;
+            }
+        }
+    </script>
+
+</body>
+</html>
